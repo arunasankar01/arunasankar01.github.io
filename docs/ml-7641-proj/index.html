@@ -1,0 +1,64 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h2>Introduction / Background</h2>
+<p>AI models have become prominent in recent developments but are often regarded as black-box systems, making it challenging to understand their decision-making processes [1]. This has led to a growing emphasis on interpretability, especially in high-stakes fields such as healthcare. Recent advancements in explainable AI (XAI), including Concept Bottleneck Models (CBMs) [2, 3], have sought to create associations between human-understandable concepts and model outputs, enhancing interpretability. This project aims to develop interpretable AI models that provide insights into the underlying factors influencing disease detection using the ChestX-ray8 dataset [4] and the HAM10000 dataset [5]. The latter is foundational for dermatological research and demonstrates the efficacy of deep learning in accurately classifying skin cancer, highlighting the need for interpretability in clinical adoption.</p>
+
+<h2>Dataset Description</h2>
+<p>This project utilizes two medical imaging datasets: HAM10000 and ChestX-ray8. The HAM10000 dataset consists of 10,015 dermatoscopic images, each labeled with one of seven skin lesion conditions. These images will aid in developing an interpretable AI model that generates concepts based on visual features to explain skin condition predictions. The ChestX-ray8 dataset includes 108,948 frontal X-ray images annotated with 12 thoracic disease labels. A subset of 10,000 images will be used for training, with plans for future scaling. We will enhance interpretability by generating concepts related to lung opacity using a language model like GPT.</p>
+
+<h2>Problem Definition</h2>
+<p>Deep neural networks face two critical challenges in real-world applications: the inability to learn continuously without forgetting past knowledge and the lack of interpretability in their decision-making processes. While there has been progress in continual learning and model interpretability, the intersection of these areas remains underexplored. Our goal is to develop models that learn new information over time while retaining past knowledge and providing human-understandable, text-based explanations. This will lead to adaptable and transparent models, which are essential in healthcare and autonomous systems where trust and safety are paramount.</p>
+
+<h2>Motivation</h2>
+<p>The black-box nature of neural network models motivates this project. As AI systems in healthcare and autonomous fields become more prevalent, understanding these models is crucial. Trust in AI relies on clear explanations for decisions, especially in medicine, where professionals depend on AI for accurate diagnoses. Additionally, AI models must adapt over time to enhance reliability. Our ultimate goal is to develop AI systems that foster meaningful insights and collaboration between machines and humans in critical settings.</p>
+
+<h2>Methods</h2>
+<h3>Data Preprocessing</h3>
+<ul>
+    <li><strong>Resizing & Normalization:</strong> Standardize image sizes (e.g., 224x224) and normalize pixel values for consistency.</li>
+    <li><strong>K-means Clustering:</strong> Run K-means on each class and select the top 10 images closest to each centroid for concept generation.</li>
+    <li><strong>Batching the Dataset:</strong> Divide the dataset into tasks for the continual learning setting.</li>
+</ul>
+<h3>Concept Annotation</h3>
+<ul>
+    <li><strong>Concept Generation:</strong> Use a GPT model to generate concise captions for selected images.</li>
+    <li><strong>Text Cleaning:</strong> Refine generated concepts to maintain quality.</li>
+    <li><strong>Annotation Expansion:</strong> Apply generated captions across all images in the class.</li>
+</ul>
+
+<h2>Results and Discussion</h2>
+<h3>Quantitative Metrics</h3>
+<ul>
+    <li><strong>Final Average Accuracy (FAA):</strong> Measures overall classification accuracy after all tasks.</li>
+    <li><strong>Average Forgetting (AF):</strong> Indicates how much the model forgets earlier tasks when learning new ones.</li>
+    <li><strong>Active Concept Ratio (ACR):</strong> Tracks the utility of concepts across tasks, providing insight into knowledge retention.</li>
+    <li><strong>Concept Credibility (CC):</strong> Evaluates the validity of concepts learned by the model.</li>
+</ul>
+
+<h2>Project Goals</h2>
+<ul>
+    <li><strong>Develop Continuous Learning:</strong> Create a neural network model capable of learning new information without forgetting previously acquired knowledge.</li>
+    <li><strong>Enhance Interpretability:</strong> Provide clear, human-understandable insights into decision-making processes.</li>
+</ul>
+
+<h2>Expected Results</h2>
+<p>We anticipate high diagnostic accuracy for the AI models developed from the HAM10000 and ChestX-ray8 datasets, measured by FAA. Models should exhibit low AF, demonstrating their ability to learn new information while retaining past knowledge. Enhanced interpretability will be assessed through the ACR metric, indicating effective concept utilization. Ultimately, we expect our model to adapt over time, improving performance in healthcare applications.</p>
+
+<h2>References</h2>
+<ol>
+    <li>Rudin, C. (2019). <em>Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead.</em> Nature Machine Intelligence, 1(5), 206-215.</li>
+    <li>Koh, P. W., et al. (2020). <em>Concept bottleneck models.</em> In International conference on machine learning (pp. 5338-5348). PMLR.</li>
+    <li>Yang, Y., et al. (2023). <em>Language in a bottle: Language model guided concept bottlenecks for interpretable image classification.</em> In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 19187-19197).</li>
+</ol>
+
+</body>
+</html>
