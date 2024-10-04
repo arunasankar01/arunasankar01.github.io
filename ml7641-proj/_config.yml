@@ -1,0 +1,6 @@
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+title: Continual Learning with Multimodal Concepts
+description: Developing deep neural networks that can continuously learn new information without forgetting past knowledge, while also providing human-understandable explanations, is a critical challenge for real-world applications. This project aims to explore the intersection of continual learning and model interpretability, addressing the need for adaptable and transparent AI models in high-stakes domains like healthcare and autonomous systems.
