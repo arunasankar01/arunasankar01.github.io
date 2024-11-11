@@ -82,12 +82,40 @@ layout: default
     <h3>Unsupervised Learning</h3>
     
     <h4>K-Means Clustering</h4>
-    <p>The K-Means algorithm is used with <code>n_clusters=7</code>, indicating an attempt to classify the data into seven clusters, which may correspond to different skin cancer types. After fitting the model, the cluster assignments for each image are stored in the dataset. These cluster labels are saved into a new CSV file for later reference. Each image now has an associated cluster label, representing the group it belongs to based on K-Means clustering.</p>
-
+    <p>The K-Means algorithm is applied with multiple values of <code>n_clusters</code>, starting from 2, 4, 6, and 7. For each value of <code>K</code>, the algorithm attempts to classify the data into that number of clusters, which may correspond to different skin cancer types. After fitting the model for each <code>K</code>, cluster assignments for each image are stored. This process can be viewed as an attempt to simulate continual learning in clustering, where the model adapts and evolves by increasing the number of clusters progressively. The average precision scores for each <code>K</code> value are calculated to assess the purity of clusters at each step, providing insight into how the clustering evolves with each increase in <code>K</code>.</p>
+    <h2>Clustering Results with Forgetting</h2>
+    <table>
+        <tr>
+            <th>K (Number of Clusters)</th>
+            <th>Average Cluster Precision</th>
+            <th>Forgetting</th>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>0.6691</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>0.6450</td>
+            <td>0.0241</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>0.6448</td>
+            <td>0.0002</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>0.6283</td>
+            <td>0.0165</td>
+        </tr>
+    </table>
+    
     <h3>Supervised Learning</h3>
     
-    <h4>Method Description</h4>
-    <p>In this approach, we utilize a supervised learning algorithm such as Convolutional Neural Networks (CNNs) or other classification models to train on labeled data. The model learns to map images of skin lesions to their corresponding labels based on pre-defined classes such as benign or malignant. The dataset is split into training, validation, and test sets, where the model is trained on the training set and evaluated on the validation set. Performance metrics such as accuracy, precision, recall, and F1-score are used to assess the model’s performance.</p>
+    <h4>Concept-Guided Visual Classifier (CGVC)</h4> 
+    <p>Our CGVC model uses advanced AI language tools to automatically create easy-to-understand concepts for image classification, without needing humans to manually label data. Here's how it works:</p> <ol> <li><strong>Concept Creation:</strong> We use ChatGPT 4.0 to generate a list of potential concepts for each image class.</li> <li><strong>Concept Selection:</strong> We choose the best concepts using a smart selection method that: <ul> <li>Picks concepts that are unique to specific classes</li> <li>Ensures a diverse range of concepts for each class</li> </ul> </li> <li><strong>Concept-Image Matching:</strong> We use CLIP, an AI tool, to compare how well each concept matches with the images.</li> <li><strong>Classification:</strong> We use a simple math equation to predict the image class based on how well it matches with different concepts.</li> <li><strong>Training:</strong> We teach the model using 3500 images (500 per class) to fine-tune its predictions.</li> </ol> <p>The CGVC model helps us understand why it makes certain predictions by showing which concepts it thinks are important for each image. This makes the model's decision-making process clearer while still being as accurate as other advanced methods.</p>
 
 <h3>Concept Annotation</h3>
 <ul>
