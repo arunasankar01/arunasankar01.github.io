@@ -26,10 +26,13 @@ layout: default
 
 <h2>Methods</h2>
 <h3>Data Preprocessing</h3>
+<p>The data preprocessing involved the following steps:</p>
 <ul>
-    <li><strong>Resizing & Normalization:</strong> Standardize image sizes and normalize pixel values for consistency.</li>
-    <li><strong>K-means Clustering:</strong> Run K-means on each class and select the top 10 images closest to each centroid for concept generation.</li>
-    <li><strong>Batching the Dataset:</strong> Divide the dataset into tasks for the continual learning setting.</li>
+    <li><strong>Data Collection:</strong> The HAM-10000 dataset was downloaded and organized into seven separate folders, each representing a specific class based on the image-to-class mapping provided in the CSV file.</li>
+    <li><strong>Initial Data Analysis:</strong> The initial analysis revealed an imbalanced dataset with label counts as follows: {'akiec': 327, 'bcc': 514, 'bkl': 1099, 'df': 115, 'mel': 1113, 'nv': 6705, 'vasc': 142}.</li>
+    <li><strong>Data Augmentation:</strong> To address the class imbalance, augmentation techniques such as cropping, rotation, and vertical flipping were applied. This resulted in 500 images for each class, stored in their respective folders.</li>
+    <li><strong>Data Splitting:</strong> The augmented dataset was split into training, validation, and test sets using a 70/20/10 ratio and stored in .p files for subsequent use.</li>
+    <li><strong>Concept Generation:</strong> For concept generation, 25 images from each class were processed through the GPT-4.0 model, which generated 50 distinct concepts per class. These concepts were stored in a JSON file and further split into 35 for training and 15 for testing.</li>
 </ul>
 <h3>To be deleted - Data Preprocessing</h3>
 <ul>
