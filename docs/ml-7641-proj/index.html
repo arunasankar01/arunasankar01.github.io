@@ -29,10 +29,52 @@ layout: default
 <p>The data preprocessing involved the following steps:</p>
 <ul>
     <li><strong>Data Collection:</strong> The HAM-10000 dataset was downloaded and organized into seven separate folders, each representing a specific class based on the image-to-class mapping provided in the CSV file.</li>
-    <li><strong>Initial Data Analysis:</strong> The initial analysis revealed an imbalanced dataset with label counts as follows: {'akiec': 327, 'bcc': 514, 'bkl': 1099, 'df': 115, 'mel': 1113, 'nv': 6705, 'vasc': 142}.</li>
-    <li><strong>Data Augmentation:</strong> To address the class imbalance, augmentation techniques such as cropping, rotation, and vertical flipping were applied. This resulted in 500 images for each class, stored in their respective folders.</li>
-    <li><strong>Data Splitting:</strong> The augmented dataset was split into training, validation, and test sets using a 70/20/10 ratio and stored in .p files for subsequent use.</li>
-    <li><strong>Concept Generation:</strong> For concept generation, 25 images from each class were processed through the GPT-4.0 model, which generated 50 distinct concepts per class. These concepts were stored in a JSON file and further split into 35 for training and 15 for testing.</li>
+    <li><strong>Initial Data Analysis:</strong> An analysis of the dataset showed it was imbalanced, with the following label distribution:</li>
+</ul>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Class Label</th>
+            <th>Initial Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>akiec</td>
+            <td>327</td>
+        </tr>
+        <tr>
+            <td>bcc</td>
+            <td>514</td>
+        </tr>
+        <tr>
+            <td>bkl</td>
+            <td>1099</td>
+        </tr>
+        <tr>
+            <td>df</td>
+            <td>115</td>
+        </tr>
+        <tr>
+            <td>mel</td>
+            <td>1113</td>
+        </tr>
+        <tr>
+            <td>nv</td>
+            <td>6705</td>
+        </tr>
+        <tr>
+            <td>vasc</td>
+            <td>142</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul>
+    <li><strong>Data Augmentation:</strong> To address the class imbalance, augmentation techniques such as cropping, rotation, and vertical flipping were applied. This process ensured that each class contained 500 images, resulting in a total of 3,500 images. Due to compute limitations, the model was run on this set of 3,500 images.</li>
+    <li><strong>Data Splitting:</strong> The augmented dataset was divided into training, validation, and test sets using a 70/20/10 split and stored in .p files.</li>
+    <li><strong>Concept Generation:</strong> For concept generation, 25 images from each class were processed through the GPT-4.0 model, producing 50 distinct concepts per class. These concepts were stored in a JSON file and split into 35 for training and 15 for testing.</li>
 </ul>
 <h3>Concept Annotation</h3>
 <ul>
