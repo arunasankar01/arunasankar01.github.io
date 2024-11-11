@@ -34,12 +34,6 @@ layout: default
     <li><strong>Data Splitting:</strong> The augmented dataset was split into training, validation, and test sets using a 70/20/10 ratio and stored in .p files for subsequent use.</li>
     <li><strong>Concept Generation:</strong> For concept generation, 25 images from each class were processed through the GPT-4.0 model, which generated 50 distinct concepts per class. These concepts were stored in a JSON file and further split into 35 for training and 15 for testing.</li>
 </ul>
-<h3>To be deleted - Data Preprocessing</h3>
-<ul>
-    <li><strong>Resizing & Normalization:</strong> Standardize image sizes and normalize pixel values for consistency.</li>
-    <li><strong>K-means Clustering:</strong> Run K-means on each class and select the top 10 images closest to each centroid for concept generation.</li>
-    <li><strong>Batching the Dataset:</strong> Divide the dataset into tasks for the continual learning setting.</li>
-</ul>
 <h3>Concept Annotation</h3>
 <ul>
     <li><strong>Concept Generation:</strong> Use a GPT model to generate concise captions for selected images.</li>
