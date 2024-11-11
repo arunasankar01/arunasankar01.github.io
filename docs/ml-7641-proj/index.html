@@ -83,7 +83,42 @@ layout: default
     
     <h4>K-Means Clustering</h4>
     <p>The K-Means algorithm is applied with multiple values of <code>n_clusters</code>, starting from 2, 4, 6, and 7. For each value of <code>K</code>, the algorithm attempts to classify the data into that number of clusters, which may correspond to different skin cancer types. After fitting the model for each <code>K</code>, cluster assignments for each image are stored. This process can be viewed as an attempt to simulate continual learning in clustering, where the model adapts and evolves by increasing the number of clusters progressively. The average precision scores for each <code>K</code> value are calculated to assess the purity of clusters at each step, providing insight into how the clustering evolves with each increase in <code>K</code>.</p>
-    <h4>Clustering Results with Forgetting</h4>
+    
+    <h3>Supervised Learning</h3>
+    
+    <h4>Concept-Guided Visual Classifier (CGVC)</h4>
+    <p>The Concept-Guided Visual Classifier (CGVC) model employs large language models to autonomously generate interpretable concepts for image classification, eliminating the need for manual annotations. The pipeline of CGVC comprises several crucial components:</p>
+    <ol>
+        <li><strong>Concept Generation:</strong> As part of the data preprocessing, we utilize ChatGPT-4.0 to automatically generate a pool of candidate concepts for each image class.</li>
+        <li><strong>Concept Selection:</strong> From the generated candidate pool, we select a subset of concepts for each class using a submodular optimization approach. The objective function balances two essential criteria:
+            <ul>
+                <li><strong>Discriminability:</strong> We compute a discriminability score for each concept based on its alignment with the images of different classes. Concepts that exhibit strong alignment with a specific class, while differing from others, are prioritized.</li>
+                <li><strong>Coverage:</strong> We apply a facility location function to ensure that the selected concepts cover a broad range of unique aspects within each class.</li>
+            </ul>
+        </li>
+        <li><strong>Concept Bottleneck Construction:</strong> We employ CLIP (Contrastive Language-Image Pre-training) to embed both the selected textual concepts and the images into a shared feature space. The concept bottleneck layer computes similarity scores between each image and the corresponding selected concepts.</li>
+        <li><strong>Classification:</strong> A linear layer is used to map the concept similarity scores to final class predictions. The weights for this layer are initialized based on the concepts selected for each class, providing a strong prior to the classification process.</li>
+        <li><strong>Training:</strong> The model is trained using 3500 images (500 per class) with cross-entropy loss, while the CLIP encoders remain frozen during the training process. The linear classification layer is fine-tuned to optimize the model's accuracy.</li>
+    </ol>
+    <p>The CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
+<h3>Concept Annotation</h3>
+<ul>
+    <li><strong>Concept Generation:</strong> Use a GPT model to generate concise captions for selected images.</li>
+    <li><strong>Text Cleaning:</strong> Refine generated concepts to maintain quality.</li>
+    <li><strong>Annotation Expansion:</strong> Apply generated captions across all images in the class.</li>
+</ul>
+
+<h2>Results and Discussion</h2>
+    
+<h3>Quantitative Metrics</h3>
+<ul>
+    <li><strong>Final Average Accuracy (FAA):</strong> Measures overall classification accuracy after all tasks.</li>
+    <li><strong>Average Forgetting (AF):</strong> Indicates how much the model forgets earlier tasks when learning new ones.</li>
+    <li><strong>Active Concept Ratio (ACR):</strong> Tracks the utility of concepts across tasks, providing insight into knowledge retention.</li>
+    <li><strong>Concept Credibility (CC):</strong> Evaluates the validity of concepts learned by the model.</li>
+</ul>
+
+<h4>K-Means Clustering Results with Forgetting</h4>
     <table>
         <tr>
             <th>K (Number of Clusters)</th>
@@ -111,46 +146,26 @@ layout: default
             <td>0.0165</td>
         </tr>
     </table>
-    
-    <h3>Supervised Learning</h3>
-    
-    <h4>Concept-Guided Visual Classifier (CGVC)</h4>
-    <p>The Concept-Guided Visual Classifier (CGVC) model employs large language models to autonomously generate interpretable concepts for image classification, eliminating the need for manual annotations. The pipeline of CGVC comprises several crucial components:</p>
-    <ol>
-        <li><strong>Concept Generation:</strong> As part of the data preprocessing, we utilize ChatGPT-4.0 to automatically generate a pool of candidate concepts for each image class.</li>
-        <li><strong>Concept Selection:</strong> From the generated candidate pool, we select a subset of concepts for each class using a submodular optimization approach. The objective function balances two essential criteria:
-            <ul>
-                <li><strong>Discriminability:</strong> We compute a discriminability score for each concept based on its alignment with the images of different classes. Concepts that exhibit strong alignment with a specific class, while differing from others, are prioritized.</li>
-                <li><strong>Coverage:</strong> We apply a facility location function to ensure that the selected concepts cover a broad range of unique aspects within each class.</li>
-            </ul>
-        </li>
-        <li><strong>Concept Bottleneck Construction:</strong> We employ CLIP (Contrastive Language-Image Pre-training) to embed both the selected textual concepts and the images into a shared feature space. The concept bottleneck layer computes similarity scores between each image and the corresponding selected concepts.</li>
-        <li><strong>Classification:</strong> A linear layer is used to map the concept similarity scores to final class predictions. The weights for this layer are initialized based on the concepts selected for each class, providing a strong prior to the classification process.</li>
-        <li><strong>Training:</strong> The model is trained using 3500 images (500 per class) with cross-entropy loss, while the CLIP encoders remain frozen during the training process. The linear classification layer is fine-tuned to optimize the model's accuracy.</li>
-    </ol>
-    <p>The CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
-<h3>Concept Annotation</h3>
-<ul>
-    <li><strong>Concept Generation:</strong> Use a GPT model to generate concise captions for selected images.</li>
-    <li><strong>Text Cleaning:</strong> Refine generated concepts to maintain quality.</li>
-    <li><strong>Annotation Expansion:</strong> Apply generated captions across all images in the class.</li>
-</ul>
 
-<h2>Results and Discussion</h2>
 <h3>Visualizations</h3>
     <img src="k=2.png" alt="k-2.png">
     <img src="k=4.png" alt="k-2.png">
     <img src="k=6.png" alt="k-2.png">
     <img src="k=7.png" alt="k-2.png">
-    
-<h3>Quantitative Metrics</h3>
-<ul>
-    <li><strong>Final Average Accuracy (FAA):</strong> Measures overall classification accuracy after all tasks.</li>
-    <li><strong>Average Forgetting (AF):</strong> Indicates how much the model forgets earlier tasks when learning new ones.</li>
-    <li><strong>Active Concept Ratio (ACR):</strong> Tracks the utility of concepts across tasks, providing insight into knowledge retention.</li>
-    <li><strong>Concept Credibility (CC):</strong> Evaluates the validity of concepts learned by the model.</li>
-</ul>
 
+<h3>Results Analysis</h3>
+<h4>K-Means Clustering</h4>
+  <p>The K-Means clustering algorithm was evaluated with different values of <strong>k</strong> (number of clusters), and the visualizations using t-SNE provide insights into the clustering performance:</p>
+
+  <ul>
+    <li><strong>K = 2</strong>: The data is divided into two large clusters, showing a clear separation. However, the average clustering precision is <strong>0.6691</strong>, suggesting that this configuration may be too simplistic.</li>
+    <li><strong>K = 4</strong>: With four clusters, the t-SNE visualization reveals more structure in the data, but the average clustering precision drops slightly to <strong>0.6450</strong> with a forgetting rate of <strong>0.0241</strong>.</li>
+    <li><strong>K = 6</strong>: This configuration shows a more complex segmentation, with six distinct clusters. The average clustering precision is <strong>0.6448</strong>, and the forgetting rate is minimal at <strong>0.0002</strong>, indicating that this value balances precision and granularity well.</li>
+    <li><strong>K = 7</strong>: Increasing to seven clusters results in some overlap between clusters, with an average precision of <strong>0.6283</strong> and a forgetting rate of <strong>0.0165</strong>, suggesting diminishing returns beyond k = 6.</li>
+  </ul>
+
+  <p>Overall, <strong>k = 6</strong> provides the most balanced clustering performance with minimal overlap and high precision.</p>
+    
 <h2>Project Goals</h2>
 <ul>
     <li><strong>Develop Continuous Learning:</strong> Create a neural network model capable of learning new information without forgetting previously acquired knowledge.</li>
