@@ -89,12 +89,6 @@ layout: default
         <li><strong>Training:</strong> The model is trained using 3500 images (500 per class) with cross-entropy loss, while the CLIP encoders remain frozen during the training process. The linear classification layer is fine-tuned to optimize the model's accuracy.</li>
     </ol>
     <p>The CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
-<h3>Concept Annotation</h3>
-<ul>
-    <li><strong>Concept Generation:</strong> Use a GPT model to generate concise captions for selected images.</li>
-    <li><strong>Text Cleaning:</strong> Refine generated concepts to maintain quality.</li>
-    <li><strong>Annotation Expansion:</strong> Apply generated captions across all images in the class.</li>
-</ul>
 
 <h2>Results and Discussion</h2>
     
@@ -102,16 +96,14 @@ layout: default
 <ul>
     <li><strong>Final Average Accuracy (FAA):</strong> Measures overall classification accuracy after all tasks.</li>
     <li><strong>Average Forgetting (AF):</strong> Indicates how much the model forgets earlier tasks when learning new ones.</li>
-    <li><strong>Active Concept Ratio (ACR):</strong> Tracks the utility of concepts across tasks, providing insight into knowledge retention.</li>
-    <li><strong>Concept Credibility (CC):</strong> Evaluates the validity of concepts learned by the model.</li>
 </ul>
 
 <h4>K-Means Clustering Results with Forgetting</h4>
     <table>
         <tr>
             <th>K (Number of Clusters)</th>
-            <th>Average Cluster Precision</th>
-            <th>Forgetting</th>
+            <th>Final Average Accuracy</th>
+            <th>Average Forgetting</th>
         </tr>
         <tr>
             <td>2</td>
