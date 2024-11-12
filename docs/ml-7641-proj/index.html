@@ -126,6 +126,38 @@ layout: default
             <td>0.0165</td>
         </tr>
     </table>
+<h4>CGVC</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Experiment</th>
+                <th>Final Average Accuracy (FAA)</th>
+                <th>Average Forgetting</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Exp 1</td>
+                <td>0.74000000954</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Exp 2</td>
+                <td>0.54500001669</td>
+                <td>0.19499999285</td>
+            </tr>
+            <tr>
+                <td>Exp 3</td>
+                <td>0.43999999762</td>
+                <td>0.10500001907</td>
+            </tr>
+            <tr>
+                <td>Exp 4</td>
+                <td>0.42381848818</td>
+                <td>0.01618150944</td>
+            </tr>
+        </tbody>
+    </table>
 
 <h3>Visualizations</h3>
 <h4>K-Means Clustering</h4>
@@ -149,6 +181,12 @@ layout: default
   </ul>
 
   <p>Overall, <strong>k = 6</strong> provides the most balanced clustering performance with minimal overlap and high precision.</p>
+
+h4>CGVC</h4>
+<h3>Explanation:</h3>
+    <p>In these experiments, we evaluated a continual learning model's performance across four trials, each varying in the number of concepts used while maintaining an exemplar size of 100 to equally partition past class samples. The primary metric analyzed was the <em>final average accuracy</em>, denoted by the first term, and <em>forgetting</em>, represented by <code>cgvc_forgetting</code>.</p>
+<p>The reason for observing high forgetting in our method stems from the size of exemplar that we use. Here we only use 50 samples for the buffer memory which makes it a bit hard to overcome forgetting. In case of k-means we use all the datapoints for each experience which makes it favorable for gaining high accuracy and in turn low forgetting. We will be experimenting our model with increased buffer size to overcome this gap in the next iteration.</p>
+    
     
 <h2>Project Goals</h2>
 <ul>
