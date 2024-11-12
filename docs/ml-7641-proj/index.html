@@ -182,8 +182,8 @@ layout: default
 
   <p>Overall, <strong>k = 6</strong> provides the most balanced clustering performance with minimal overlap and high precision.</p>
 
-h4>CGVC</h4>
-<h3>Explanation:</h3>
+<h4>CGVC</h4>
+<h5>Explanation:</h5>
     <p>In these experiments, we evaluated a continual learning model's performance across four trials, each varying in the number of concepts used while maintaining an exemplar size of 100 to equally partition past class samples. The primary metric analyzed was the <em>final average accuracy</em>, denoted by the first term, and <em>forgetting</em>, represented by <code>cgvc_forgetting</code>.</p>
 <p>The reason for observing high forgetting in our method stems from the size of exemplar that we use. Here we only use 50 samples for the buffer memory which makes it a bit hard to overcome forgetting. In case of k-means we use all the datapoints for each experience which makes it favorable for gaining high accuracy and in turn low forgetting. We will be experimenting our model with increased buffer size to overcome this gap in the next iteration.</p>
     
