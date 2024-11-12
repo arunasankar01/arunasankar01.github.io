@@ -33,44 +33,32 @@ layout: default
 </ul>
 
 <table>
-    <table>
-        <thead>
-            <tr>
-                <th>Class Label</th>
-                <th>Initial Count</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>akiec</td>
-                <td>327</td>
-            </tr>
-            <tr>
-                <td>bcc</td>
-                <td>514</td>
-            </tr>
-            <tr>
-                <td>bkl</td>
-                <td>1099</td>
-            </tr>
-            <tr>
-                <td>df</td>
-                <td>115</td>
-            </tr>
-            <tr>
-                <td>mel</td>
-                <td>1113</td>
-            </tr>
-            <tr>
-                <td>nv</td>
-                <td>6705</td>
-            </tr>
-            <tr>
-                <td>vasc</td>
-                <td>142</td>
-            </tr>
-        </tbody>
-    </table>
+    <thead>
+        <tr>
+            <th>Class Label</th>
+            <th>akiec</th>
+            <th>bcc</th>
+            <th>bkl</th>
+            <th>df</th>
+            <th>mel</th>
+            <th>nv</th>
+            <th>vasc</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Initial Count</td>
+            <td>327</td>
+            <td>514</td>
+            <td>1099</td>
+            <td>115</td>
+            <td>1113</td>
+            <td>6705</td>
+            <td>142</td>
+        </tr>
+    </tbody>
+</table>
+
 
 <ul>
     <li><strong>Data Augmentation:</strong> To address the class imbalance, augmentation techniques such as cropping, rotation, and vertical flipping were applied. This process ensured that each class contained 500 images, resulting in a total of 3,500 images. Due to compute limitations, the model was run on this set of 3,500 images.</li>
