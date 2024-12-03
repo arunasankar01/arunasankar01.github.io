@@ -90,6 +90,17 @@ layout: default
     </ol>
     <p>The CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
 
+    <h4>Concept Bottleneck Model (CBM)</h4>
+    <p>The Concept Bottleneck Model (CBM) framework leverages the CLIP (Contrastive Language-Image Pre-training) model as its feature extraction backbone, utilizing its powerful multimodal embedding capabilities. The architecture consists of three primary components:</p>
+    <ol>
+        <li><strong>Feature Extraction Layer:</strong> Utilizes CLIP to extract robust image and concept features.</li>
+        <li><strong>Concept Prediction Layer:</strong> Transforms extracted features into a set of human-interpretable concepts.</li>
+        <li><strong>Classification Layer:</strong> Generates final predictions based on the predicted concepts.</li>
+    </ol>
+    <p>Leveraging the same conceptual infrastructure developed for CGVC, the CBM introduces an explicit intermediate concept layer that transforms the image classification process into a two-stage reasoning mechanism. The model begins by using CLIP to generate a shared embedding space for both image and textual concepts. During the concept bottleneck phase, a linear projection layer computes concept probabilities, forcing the model to reason through interpretable intermediate representations before making final predictions.</p>
+    <p>The training process focuses on optimizing both concept prediction accuracy and classification performance, with a cross-entropy loss function applied to the concept and class prediction stages. By maintaining frozen CLIP encoders and fine-tuning only the linear classification layers, the CBM achieves a balance between leveraging pre-trained visual-linguistic representations and developing class-specific concept understanding.</p>
+    
+    
 <h2>Results and Discussion</h2>
     
 <h3>Quantitative Metrics</h3>
