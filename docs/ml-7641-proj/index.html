@@ -210,6 +210,7 @@ layout: default
 <!--     <h4>Forgetting Results:</h4> -->
     <p>Forgetting Results: The model's forgetting rate was initially <strong>0</strong> in Experiment 1, indicating no forgetting when learning the first task. However, in Experiments 2 and 3, forgetting increased significantly, reaching values of <strong>0.75</strong> and <strong>0.82</strong>, respectively. This shows that CBM struggles with forgetting as more tasks are introduced, and it is more prone to losing information from earlier tasks. </p>
 
+    <p>The results from CBM show us that the vanilla model (supervised) struggles in handling forgetting which is a crucial problem in the context of continual learning. It shows that by leveraging transformer models helps to understand multi-modal information better and give rise to emergent behaviours which enables cross concept-class relationships (ability to relate old concepts with new classes and new classes with old concepts).</p>
 
 <h4>CGVC</h4>
     <p>In these experiments, we evaluated a continual learning model's performance across four trials, each varying in the number of concepts used while maintaining an exemplar size of 100 to equally partition past class samples. The primary metric analyzed was the <em>final average accuracy</em>, denoted by the first term, and <em>forgetting</em>, represented by <code>cgvc_forgetting</code>.</p>
