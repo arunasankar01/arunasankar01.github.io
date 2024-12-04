@@ -74,32 +74,21 @@ layout: default
     
     <h3>Supervised Learning</h3>
     
-    <h4>Concept-Guided Visual Classifier (CGVC)</h4>
-    <p>The Concept-Guided Visual Classifier (CGVC) model employs large language models to autonomously generate interpretable concepts for image classification, eliminating the need for manual annotations. The pipeline of CGVC comprises several crucial components:</p>
-    <ol>
-        <li><strong>Concept Generation:</strong> As part of the data preprocessing, we utilize ChatGPT-4.0 to automatically generate a pool of candidate concepts for each image class.</li>
-        <li><strong>Concept Selection:</strong> From the generated candidate pool, we select a subset of concepts for each class using a submodular optimization approach. The objective function balances two essential criteria:
-            <ul>
-                <li><strong>Discriminability:</strong> We compute a discriminability score for each concept based on its alignment with the images of different classes. Concepts that exhibit strong alignment with a specific class, while differing from others, are prioritized.</li>
-                <li><strong>Coverage:</strong> We apply a facility location function to ensure that the selected concepts cover a broad range of unique aspects within each class.</li>
-            </ul>
-        </li>
-        <li><strong>Concept Bottleneck Construction:</strong> We employ CLIP (Contrastive Language-Image Pre-training) to embed both the selected textual concepts and the images into a shared feature space. The concept bottleneck layer computes similarity scores between each image and the corresponding selected concepts.</li>
-        <li><strong>Classification:</strong> A linear layer is used to map the concept similarity scores to final class predictions. The weights for this layer are initialized based on the concepts selected for each class, providing a strong prior to the classification process.</li>
-        <li><strong>Training:</strong> The model is trained using 3500 images (500 per class) with cross-entropy loss, while the CLIP encoders remain frozen during the training process. The linear classification layer is fine-tuned to optimize the model's accuracy.</li>
-    </ol>
-    <p>The CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
-
     <h4>Concept Bottleneck Model (CBM)</h4>
-    <p>The Concept Bottleneck Model (CBM) framework leverages the CLIP (Contrastive Language-Image Pre-training) model as its feature extraction backbone, utilizing its powerful multimodal embedding capabilities. The architecture consists of three primary components:</p>
+    <p>The Concept Bottleneck Model (CBM) introduces interpretability into image classification by utilizing human-specified concepts as intermediaries in the prediction process. The model follows a structured pipeline:</p>
     <ol>
-        <li><strong>Feature Extraction Layer:</strong> Utilizes CLIP to extract robust image and concept features.</li>
-        <li><strong>Concept Prediction Layer:</strong> Transforms extracted features into a set of human-interpretable concepts.</li>
-        <li><strong>Classification Layer:</strong> Generates final predictions based on the predicted concepts.</li>
+        <li><strong>Concept Extraction:</strong> CBM employs CLIP (Contrastive Language-Image Pre-training) as the backbone to extract meaningful visual features from images and align them with human-interpretable concepts.</li>
+        <li><strong>Concept Prediction:</strong> A linear layer is used to transform the extracted features into probabilities for each concept, enabling the model to reason through these interpretable concepts.</li>
+        <li><strong>Classification:</strong> The final class prediction is made using the probabilities of the predicted concepts. This two-step process ensures that the model's decisions are explicitly tied to the intermediate concepts.</li>
     </ol>
-    <p>Leveraging the same conceptual infrastructure developed for CGVC, the CBM introduces an explicit intermediate concept layer that transforms the image classification process into a two-stage reasoning mechanism. The model begins by using CLIP to generate a shared embedding space for both image and textual concepts. During the concept bottleneck phase, a linear projection layer computes concept probabilities, forcing the model to reason through interpretable intermediate representations before making final predictions.</p>
-    <p>The training process focuses on optimizing both concept prediction accuracy and classification performance, with a cross-entropy loss function applied to the concept and class prediction stages. By maintaining frozen CLIP encoders and fine-tuning only the linear classification layers, the CBM achieves a balance between leveraging pre-trained visual-linguistic representations and developing class-specific concept understanding.</p>
-    
+    <p>CBM’s training involves two stages:</p>
+    <ol>
+        <li>The first stage focuses on aligning the predicted concepts with human-defined ones using a loss function designed to maximize concept accuracy.</li>
+        <li>The second stage optimizes class prediction accuracy based on these intermediate concepts, ensuring robust performance.</li>
+    </ol>
+    <p>During training, CLIP encoders remain frozen, and only the linear layers are fine-tuned. This approach ensures the model leverages pre-trained visual-linguistic embeddings while learning to map concepts effectively to the target classes.</p>
+    <p>By incorporating an explicit concept layer, CBM not only achieves competitive classification accuracy compared to end-to-end models but also facilitates transparency in the decision-making process. This is achieved through its ability to expose intermediate concept probabilities and support test-time interventions, making it a valuable tool for tasks requiring interpretability.</p>
+
     
 <h2>Results and Discussion</h2>
     
