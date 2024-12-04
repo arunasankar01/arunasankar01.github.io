@@ -13,11 +13,12 @@ layout: default
 <body>
 
 <h2>Introduction / Background</h2>
-<p>AI models have become prominent in recent developments but are often regarded as black-box systems, making it challenging to understand their decision-making processes [1]. This has led to a growing emphasis on interpretability, especially in high-stakes fields such as healthcare. Recent advancements in explainable AI (XAI), including Concept Bottleneck Models (CBMs) [2, 3], have sought to create associations between human-understandable concepts and model outputs, enhancing interpretability. This project aims to develop interpretable AI models that provide insights into the underlying factors influencing disease detection using the ChestX-ray8 dataset [4] and the HAM10000 dataset [5]. The latter is vital for dermatological research, showcasing deep learning's effectiveness in skin cancer classification and the need for interpretability in clinical settings.</p>
+<p>AI models have become prominent in recent developments but are often regarded as black-box systems, making it challenging to understand their decision-making processes [1]. This has led to a growing emphasis on interpretability, especially in high-stakes fields such as healthcare. Recent advancements in explainable AI (XAI), including Concept Bottleneck Models (CBMs) [2, 3], have sought to create associations between human-understandable concepts and model outputs, enhancing interpretability. This project aims to develop interpretable AI models that provide insights into the underlying factors influencing disease detection using the HAM10000 dataset [5]. The latter is vital for dermatological research, showcasing deep learning's effectiveness in skin cancer classification and the need for interpretability in clinical settings.</p>
 
 <h2>Dataset Description</h2>
-<p>This project utilizes two medical imaging datasets: <a href="https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000" target="_blank">HAM10000</a> and <a href="https://nihcc.app.box.com/v/ChestXray-NIHCC" target="_blank">ChestX-ray8</a>. The HAM10000 dataset consists of 10,015 dermatoscopic images, each labeled with one of seven skin lesion conditions. These images will aid in developing an interpretable AI model that generates concepts based on visual features to explain skin condition predictions. The ChestX-ray8 dataset includes 108,948 frontal X-ray images annotated with 12 thoracic disease labels. A subset of 10,000 images will be used for training, with plans for future scaling. We will enhance interpretability by generating concepts related to lung opacity using a language model like GPT.</p>
-
+<p>This project utilizes a medical imaging dataset: <a href="https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000" target="_blank">HAM10000</a>. The HAM10000 dataset consists of 10,015 dermatoscopic images, each labeled with one of seven skin lesion conditions. These images will aid in developing an interpretable AI model that generates concepts based on visual features to explain skin condition predictions. We will enhance interpretability by generating concepts related to lung opacity using a language model like GPT.</p>
+<!-- and <a href="https://nihcc.app.box.com/v/ChestXray-NIHCC" target="_blank">ChestX-ray8</a> 
+    The ChestX-ray8 dataset includes 108,948 frontal X-ray images annotated with 12 thoracic disease labels. A subset of 10,000 images will be used for training, with plans for future scaling.-->
 <h2>Problem Definition</h2>
 <p>Deep neural networks face two critical challenges in real-world applications: the inability to learn continuously without forgetting past knowledge and the lack of interpretability in their decision-making processes. While there has been progress in continual learning and model interpretability, the intersection of these areas remains underexplored. Our goal is to develop models that learn new information over time while retaining past knowledge and providing human-understandable, text-based explanations. This will lead to adaptable and transparent models, which are essential in healthcare and autonomous systems where trust and safety are paramount.</p>
 
@@ -74,6 +75,21 @@ layout: default
     
     <h3>Supervised Learning</h3>
 
+    <h4>Concept Bottleneck Model (CBM)</h4>
+    <p>The Concept Bottleneck Model (CBM) introduces interpretability into image classification by utilizing human-specified concepts as intermediaries in the prediction process. The model follows a structured pipeline:</p>
+    <ol>
+        <li><strong>Concept Extraction:</strong> CBM employs CLIP (Contrastive Language-Image Pre-training) as the backbone to extract meaningful visual features from images and align them with human-interpretable concepts.</li>
+        <li><strong>Concept Prediction:</strong> A linear layer is used to transform the extracted features into probabilities for each concept, enabling the model to reason through these interpretable concepts.</li>
+        <li><strong>Classification:</strong> The final class prediction is made using the probabilities of the predicted concepts. This two-step process ensures that the model's decisions are explicitly tied to the intermediate concepts.</li>
+    </ol>
+    <p>CBM’s training involves two stages:</p>
+    <ol>
+        <li>The first stage focuses on aligning the predicted concepts with human-defined ones using a loss function designed to maximize concept accuracy.</li>
+        <li>The second stage optimizes class prediction accuracy based on these intermediate concepts, ensuring robust performance.</li>
+    </ol>
+    <p>During training, CLIP encoders remain frozen, and only the linear layers are fine-tuned. This approach ensures the model leverages pre-trained visual-linguistic embeddings while learning to map concepts effectively to the target classes.</p>
+    <p>By incorporating an explicit concept layer, CBM not only achieves competitive classification accuracy compared to end-to-end models but also facilitates transparency in the decision-making process. This is achieved through its ability to expose intermediate concept probabilities and support test-time interventions, making it a valuable tool for tasks requiring interpretability.</p>
+
     <h4>Concept-Guided Visual Classifier (CGVC)</h4>
     <p>The Concept-Guided Visual Classifier (CGVC) model employs large language models to autonomously generate interpretable concepts for image classification, eliminating the need for manual annotations. The pipeline of CGVC comprises several crucial components:</p>
     <ol>
@@ -90,21 +106,6 @@ layout: default
     </ol>
     <p>The CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
     
-    <h4>Concept Bottleneck Model (CBM)</h4>
-    <p>The Concept Bottleneck Model (CBM) introduces interpretability into image classification by utilizing human-specified concepts as intermediaries in the prediction process. The model follows a structured pipeline:</p>
-    <ol>
-        <li><strong>Concept Extraction:</strong> CBM employs CLIP (Contrastive Language-Image Pre-training) as the backbone to extract meaningful visual features from images and align them with human-interpretable concepts.</li>
-        <li><strong>Concept Prediction:</strong> A linear layer is used to transform the extracted features into probabilities for each concept, enabling the model to reason through these interpretable concepts.</li>
-        <li><strong>Classification:</strong> The final class prediction is made using the probabilities of the predicted concepts. This two-step process ensures that the model's decisions are explicitly tied to the intermediate concepts.</li>
-    </ol>
-    <p>CBM’s training involves two stages:</p>
-    <ol>
-        <li>The first stage focuses on aligning the predicted concepts with human-defined ones using a loss function designed to maximize concept accuracy.</li>
-        <li>The second stage optimizes class prediction accuracy based on these intermediate concepts, ensuring robust performance.</li>
-    </ol>
-    <p>During training, CLIP encoders remain frozen, and only the linear layers are fine-tuned. This approach ensures the model leverages pre-trained visual-linguistic embeddings while learning to map concepts effectively to the target classes.</p>
-    <p>By incorporating an explicit concept layer, CBM not only achieves competitive classification accuracy compared to end-to-end models but also facilitates transparency in the decision-making process. This is achieved through its ability to expose intermediate concept probabilities and support test-time interventions, making it a valuable tool for tasks requiring interpretability.</p>
-
     
 <h2>Results and Discussion</h2>
     
@@ -142,6 +143,21 @@ layout: default
             <td>0.0165</td>
         </tr>
     </table>
+
+<h4>CBM</h4> 
+    <table> 
+        <thead> 
+            <tr> 
+                <th>Experiment</th> 
+                <th>Final Average Accuracy (FAA)</th> 
+                <th>Average Forgetting</th> </tr> 
+        </thead> 
+        <tbody> 
+            <tr> 
+                <td>Exp 1</td> 
+                <td>0.69000102380</td> 
+                <td>-</td> </tr> <tr> <td>Exp 2</td> <td>0.51200028890</td> <td>0.24411123850</td> </tr> <tr> <td>Exp 3</td> <td>0.39200123345</td> <td>0.22013572833</td> </tr> <tr> <td>Exp 4</td> <td>0.38766666667</td> <td>0.01890458075</td> </tr> </tbody> </table>
+
 <h4>CGVC</h4>
     <table>
         <thead>
@@ -212,12 +228,12 @@ layout: default
 
   <h2>Next Steps</h2>
   <ul>
-    <li>Construct a Concept Bottleneck Model (CBM) utilizing linear layers over the course of the coming week.</li>
+<!--     <li>Construct a Concept Bottleneck Model (CBM) utilizing linear layers over the course of the coming week.</li>
     <li>Conduct a comparative analysis between the three models.</li>
-    <li>Perform hyper-parameter tuning to enhance the performance of the CGVC model.</li>
+    <li>Perform hyper-parameter tuning to enhance the performance of the CGVC model.</li> -->
     <li>Experiment with strategies for exemplary replacements.</li>
-    <li>We will run our models on ChestX-ray8 dataset and perform a comparison study.</li>
-    <li>Upon completing these tasks, we will finish our final project report.</li>
+    <li>We will try to run our models on ChestX-ray8 dataset and perform a comparison study.</li>
+<!--     <li>Upon completing these tasks, we will finish our final project report.</li> -->
   </ul>
 
 <h2>Expected Results</h2>
