@@ -88,7 +88,7 @@ layout: default
         <li>The second stage optimizes class prediction accuracy based on these intermediate concepts, ensuring robust performance.</li>
     </ol>
     <p>During training, CLIP encoders remain frozen, and only the linear layers are fine-tuned. This approach ensures the model leverages pre-trained visual-linguistic embeddings while learning to map concepts effectively to the target classes.</p>
-    <p>By incorporating an explicit concept layer, CBM not only achieves competitive classification accuracy compared to end-to-end models but also facilitates transparency in the decision-making process. This is achieved through its ability to expose intermediate concept probabilities and support test-time interventions, making it a valuable tool for tasks requiring interpretability.</p>
+<!--     <p>By incorporating an explicit concept layer, CBM not only achieves competitive classification accuracy compared to end-to-end models but also facilitates transparency in the decision-making process. This is achieved through its ability to expose intermediate concept probabilities and support test-time interventions, making it a valuable tool for tasks requiring interpretability.</p> -->
 
     <h4>Concept-Guided Visual Classifier (CGVC)</h4>
     <p>The Concept-Guided Visual Classifier (CGVC) model employs large language models to autonomously generate interpretable concepts for image classification, eliminating the need for manual annotations. The pipeline of CGVC comprises several crucial components:</p>
@@ -104,8 +104,7 @@ layout: default
         <li><strong>Classification:</strong> A linear layer is used to map the concept similarity scores to final class predictions. The weights for this layer are initialized based on the concepts selected for each class, providing a strong prior to the classification process.</li>
         <li><strong>Training:</strong> The model is trained using 3500 images (500 per class) with cross-entropy loss, while the CLIP encoders remain frozen during the training process. The linear classification layer is fine-tuned to optimize the model's accuracy.</li>
     </ol>
-    <p>The CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
-    
+   
     
 <h2>Results and Discussion</h2>
     
@@ -215,7 +214,6 @@ layout: default
   <p>Overall, <strong>k = 6</strong> provides the most balanced clustering performance with minimal overlap and high precision.</p>
 
 <h4>CBM</h4>
-<h5>Explanation:</h5>
     <p>In these experiments, we evaluated the performance of the Concept Bottleneck Model (CBM) across four trials, varying the number of concepts used while keeping the exemplar size fixed at 100. The two primary metrics analyzed were the final average accuracy (<em>mAP</em>) and forgetting, which measures the model's ability to retain knowledge from previous tasks as new ones are learned.</p>
 <!--     <h6>mAP Results:</h4> -->
     <p>mAP Results: The CBM model showed a decreasing trend in accuracy across experiments. It started with a high mAP of <strong>0.69</strong> in Experiment 1, but the accuracy dropped in subsequent experiments. By Experiment 4, the mAP had decreased to <strong>0.39</strong>. This suggests that while the model performs well in early stages, its accuracy declines as more concepts are added and the model faces additional tasks.</p>
@@ -224,9 +222,10 @@ layout: default
 
 
 <h4>CGVC</h4>
-<h5>Explanation:</h5>
     <p>In these experiments, we evaluated a continual learning model's performance across four trials, each varying in the number of concepts used while maintaining an exemplar size of 100 to equally partition past class samples. The primary metric analyzed was the <em>final average accuracy</em>, denoted by the first term, and <em>forgetting</em>, represented by <code>cgvc_forgetting</code>.</p>
 <p>The reason for observing high forgetting in our method stems from the size of exemplar that we use. Here we only use 50 samples for the buffer memory which makes it a bit hard to overcome forgetting. In case of k-means we use all the datapoints for each experience which makes it favorable for gaining high accuracy and in turn low forgetting. We will be experimenting our model with increased buffer size to overcome this gap in the next iteration.</p>
+
+ <p>Overall, the CGVC model not only offers high prediction accuracy comparable to end-to-end methods but also enhances interpretability by exposing intermediate concept scores and the learned concept-class associations. This transparency provides valuable insight into the model’s decision-making process, ensuring that its predictions are both explainable and reliable.</p>
     
     
 <h2>Project Goals</h2>
