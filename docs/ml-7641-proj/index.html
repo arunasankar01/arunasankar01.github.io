@@ -76,18 +76,19 @@ layout: default
     <h3>Supervised Learning</h3>
 
     <h4>Concept Bottleneck Model (CBM)</h4>
+    
     <p>The Concept Bottleneck Model (CBM) introduces interpretability into image classification by utilizing human-specified concepts as intermediaries in the prediction process. The model follows a structured pipeline:</p>
     <ol>
-        <li><strong>Concept Extraction:</strong> CBM employs CLIP (Contrastive Language-Image Pre-training) as the backbone to extract meaningful visual features from images and align them with human-interpretable concepts.</li>
+        <li><strong>Feature Extraction:</strong> CBM employs traditional feature encoders such as resnets as the backbone to extract meaningful visual features from images. These features are aligned to an intermediate output which represent human-interpretable concepts.</li>
         <li><strong>Concept Prediction:</strong> A linear layer is used to transform the extracted features into probabilities for each concept, enabling the model to reason through these interpretable concepts.</li>
         <li><strong>Classification:</strong> The final class prediction is made using the probabilities of the predicted concepts. This two-step process ensures that the model's decisions are explicitly tied to the intermediate concepts.</li>
     </ol>
     <p>CBM’s training involves two stages:</p>
     <ol>
-        <li>The first stage focuses on aligning the predicted concepts with human-defined ones using a loss function designed to maximize concept accuracy.</li>
+        <li>The first stage focuses on aligning the image features with human-defined concepts using a loss function designed to maximize concept accuracy.</li>
         <li>The second stage optimizes class prediction accuracy based on these intermediate concepts, ensuring robust performance.</li>
     </ol>
-    <p>During training, CLIP encoders remain frozen, and only the linear layers are fine-tuned. This approach ensures the model leverages pre-trained visual-linguistic embeddings while learning to map concepts effectively to the target classes.</p>
+    <p>During training, we do a joint training of the feature extractors and the concept layer. This approach ensures the model learns a good mapping of features and concepts while learning to map concepts effectively to the target classes.</p>
 <!--     <p>By incorporating an explicit concept layer, CBM not only achieves competitive classification accuracy compared to end-to-end models but also facilitates transparency in the decision-making process. This is achieved through its ability to expose intermediate concept probabilities and support test-time interventions, making it a valuable tool for tasks requiring interpretability.</p> -->
 
     <h4>Concept-Guided Visual Classifier (CGVC)</h4>
