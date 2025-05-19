@@ -11,7 +11,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/arunasankar01.github.io/',
+  base: '/',
   server: {
     open: true
   },
