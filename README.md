@@ -8,11 +8,13 @@
 ## 🛠️ Local Development and Github Deployment
 
 ```bash
+# to check in localhost
 npm run dev
 
-# After making changes:
-# Build the project
+# After making changes,
+# Build the project with:
 npm run build
+# This command creates a dist directory that has the contents necessary for github pages to read from; contains an index.html file
 
 # Remove old docs folder (if any)
 rm -rf docs
