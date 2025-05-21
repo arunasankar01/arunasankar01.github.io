@@ -82,6 +82,8 @@ import React, { Suspense, useState } from 'react';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Contact from './components/Contact';
 
 // Navbar component with smooth scrolling
 const Navbar = () => {
@@ -173,8 +175,9 @@ const App = () => {
           </div>
           <About />
           <Projects />
+          <Skills />
           {/* <Skills /> */}
-          {/* <Contact /> */}
+          <Contact />
         </Suspense>
       </div>
       

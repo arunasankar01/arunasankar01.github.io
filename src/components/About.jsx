@@ -100,7 +100,7 @@ const About = () => {
             </p>
             
             {/* Key Skills */}
-            <h4 className="text-xl font-semibold text-white mb-3">Technical Skills</h4>
+            {/* <h4 className="text-xl font-semibold text-white mb-3">Technical Skills</h4>
             <div className="flex flex-wrap gap-3 mb-8">
               {[
                 "React", "Node.js", "Python", "C++", "Go/Golang", "Docker", "Kubernetes", 
@@ -113,7 +113,7 @@ const About = () => {
                   {skill}
                 </span>
               ))}
-            </div>
+            </div> */}
             
             {/* Call to action */}
             <motion.a

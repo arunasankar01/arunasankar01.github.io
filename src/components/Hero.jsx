@@ -4,8 +4,16 @@ import { motion } from 'framer-motion';
 import AnimatedBackground from '../components/AnimatedBackground';
 
 const Hero = () => {
+  // Scroll to section function
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative w-full h-screen mx-auto overflow-hidden">
+    <section id="home" className="relative w-full h-screen mx-auto overflow-hidden">
       {/* 3D Background Canvas */}
       <div className="absolute inset-0">
         <Canvas camera={{ position: [0, 0, 4], fov: 60 }}>
@@ -53,14 +61,16 @@ const Hero = () => {
                   I'm a passionate software engineer with expertise in building robust and scalable 
                   applications. I love solving complex problems with clean, efficient code and 
                   creating intuitive user experiences that make a difference.
+                  I'm currently looking for Software engineer internships for Fall 2025. 
                 </p>
                 
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => scrollToSection('projects')}
                     className="bg-gradient-to-r from-purple-600 to-purple-800 py-3 px-6 
-                               rounded-full text-white font-medium shadow-lg"
+                               rounded-full text-white font-medium shadow-lg cursor-pointer"
                   >
                     View Projects
                   </motion.button>
@@ -68,8 +78,9 @@ const Hero = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => scrollToSection('contact')}
                     className="bg-transparent border border-cyan-400 py-3 px-6 
-                               rounded-full text-cyan-300 font-medium shadow-lg"
+                               rounded-full text-cyan-300 font-medium shadow-lg cursor-pointer"
                   >
                     Contact Me
                   </motion.button>
