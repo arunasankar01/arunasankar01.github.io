@@ -1,14 +1,30 @@
-# Note to Self
-Branch: portfolio;
-## Docs folder is necessary to host the website.
+# 🚀 Note to Self
 
-After making changes from local,
-npm run dev - to check in local
+**Branch:** `portfolio`  
+**Deployment folder:** `docs/` (required by GitHub Pages)
 
-npm run build - creates a dist directory that has the contents necessary for github pages to read from; contains an index.html file
+---
+
+## 🛠️ Local Development
+
+```bash
+npm run dev
+
+# Build the project
+npm run build
+
+# Remove old docs folder (if any)
 rm -rf docs
+
+# Rename dist to docs
 mv dist docs
+
+# Stage changes (including docs)
 git add -f docs
 git add .
+
+# Commit changes
 git commit -m "message for commit"
+
+# Push to portfolio branch
 git push origin portfolio
