@@ -1,6 +1,6 @@
 # Note to Self
-Branch: portfolio
-Docs folder is necessary to host the website.
+Branch: portfolio;
+## Docs folder is necessary to host the website.
 
 After making changes from local,
 npm run dev - to check in local
