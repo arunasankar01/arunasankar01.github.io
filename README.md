@@ -5,11 +5,12 @@
 
 ---
 
-## 🛠️ Local Development
+## 🛠️ Local Development and Github Deployment
 
 ```bash
 npm run dev
 
+# After making changes:
 # Build the project
 npm run build
 
