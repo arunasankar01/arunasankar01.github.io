@@ -1,8 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// Georgia Tech Logo Component
+const GTLogo = () => (
+  <img 
+    src="/GTlogo.png" 
+    alt="Georgia Tech Logo" 
+    width="20" 
+    height="20" 
+    className="object-contain"
+    onError={(e) => {
+      // Fallback to SVG if image fails to load
+      e.target.style.display = 'none';
+      e.target.nextSibling.style.display = 'block';
+    }}
+  />
+);
+
 // Project Card Component
-const ProjectCard = ({ index, title, description, tags, image, link, github }) => {
+const ProjectCard = ({ index, title, description, tags, image, link, github, isGTProject }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -25,9 +41,33 @@ const ProjectCard = ({ index, title, description, tags, image, link, github }) =
           />
         )}
         
-        {/* GitHub and Demo links */}
-        {/* <div className="absolute bottom-0 right-0 p-4 flex gap-2">
-          {github && (
+        {/* GitHub/GT Logo and Demo links */}
+        <div className="absolute bottom-0 right-0 p-4 flex gap-2">
+          {/* {github && (
+            <a 
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-900 bg-opacity-80 p-2 rounded-full hover:bg-purple-900 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="text-white">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+            </a>
+          )} */}
+
+          {isGTProject ? (
+            <div 
+              className="bg-gray-900 bg-opacity-80 p-2 rounded-full hover:bg-yellow-900 transition-colors cursor-pointer group relative"
+              title="Associated with Georgia Tech"
+            >
+              <GTLogo />
+              {/* Tooltip */}
+              <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                Associated with Georgia Tech
+              </div>
+            </div>
+          ) : github && (
             <a 
               href={github}
               target="_blank"
@@ -40,7 +80,7 @@ const ProjectCard = ({ index, title, description, tags, image, link, github }) =
             </a>
           )}
           
-          {link && (
+          {/* {link && (
             <a 
               href={link}
               target="_blank"
@@ -52,8 +92,8 @@ const ProjectCard = ({ index, title, description, tags, image, link, github }) =
                 <path fillRule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
               </svg>
             </a>
-          )}
-        </div> */}
+          )} */}
+        </div>
       </div>
       
       {/* Project Content */}
@@ -82,7 +122,6 @@ const ProjectCard = ({ index, title, description, tags, image, link, github }) =
 
 // Projects Component
 const Projects = () => {
-  // Example projects - replace with your actual projects
   const projects = [
     {
       title: "Supply Chain Simulator (Ongoing)",
@@ -90,7 +129,8 @@ const Projects = () => {
       tags: ["React", "Firebase", "Node.js", "DASH", "Python", "Plotly"],
       image: null, // Add your image path here
       link: "https://movie-rec-demo.com",
-      github: "https://github.com/yourusername/movie-app"
+      github: "https://github.com/yourusername/movie-app",
+      isGTProject: true
     },
     {
       title: "Multi-Version Concurrency Control Implementation in BuzzDB",
@@ -98,7 +138,8 @@ const Projects = () => {
       tags: [" C++", "MVTO (Multi-version timestamp ordering)"],
       image: null, // Add your image path here
       link: "https://project-demo.com",
-      github: "https://github.com/yourusername/project"
+      github: "https://github.com/yourusername/project",
+      isGTProject: true
     },
     {
       title: "Secure API Authentication System with JWT and RBAC",
@@ -106,7 +147,8 @@ const Projects = () => {
       tags: ["Node.js", "PostgreSQL", "Express", "JWT(JSON Web Token)"],
       image: null, // Add your image path here
       link: "https://weather-app-demo.com",
-      github: "https://github.com/yourusername/weather-app"
+      github: "https://github.com/arunasankar01/auth-app",
+      isGTProject: false
     },
     {
       title: "Implementation for Internet Simulation",
@@ -114,7 +156,8 @@ const Projects = () => {
       tags: ["OSPF", "BGP", "Open vSwitch", "FRR", "Docker"],
       image: null, // Add your image path here
       link: "https://task-manager-demo.com",
-      github: "https://github.com/yourusername/task-manager"
+      github: "https://github.com/yourusername/task-manager",
+      isGTProject: true
     },
     {
       title: "Farm level Crop Yield Prediction using Deep Learning",
@@ -122,7 +165,8 @@ const Projects = () => {
       tags: ["Python", "DL", "Regression", "Google Earth Engine"],
       image: null, // Add your image path here
       link: "https://portfolio-demo.com",
-      github: "https://github.com/yourusername/portfolio"
+      github: "https://github.com/arunasankar01/Multi-Temporal-Images-based-Farm-Yield-Prediction-using-Deep-Learning",
+      isGTProject: false
     },
     {
       title: "Path Finder: Mars Rover Project",
@@ -130,7 +174,8 @@ const Projects = () => {
       tags: ["HTML", "CSS", "React", "JavaScript"],
       image: null, // Add your image path here
       link: "https://movie-rec-demo.com",
-      github: "https://github.com/yourusername/movie-app"
+      github: "https://github.com/arunasankar01/PathFinder-Mars-Rover",
+      isGTProject: false
     }
   ];
 

@@ -112,7 +112,7 @@ const Skills = () => {
 
             <div className="relative pl-6 border-l-2 border-purple-500">
               <div className="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1"></div>
-              <h4 className="text-xl font-semibold text-white">SDE-1 DevOps Engineer</h4>
+              <h4 className="text-xl font-semibold text-white">Software Engineer I - DevOps</h4>
               <p className="text-cyan-300">Increff (NextSCM Solutions Pvt. Ltd.) | Jun 2022 – Jul 2024</p>
               <p className="text-gray-300 mt-2">
                 Enhanced security posture of cloud resources in GCP by 50%, compliant with ISO and CIS standards.
@@ -122,7 +122,7 @@ const Skills = () => {
             
             <div className="relative pl-6 border-l-2 border-purple-500">
               <div className="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1"></div>
-              <h4 className="text-xl font-semibold text-white">SDE-1 DevOps Intern</h4>
+              <h4 className="text-xl font-semibold text-white">Software Engineer Intern - DevOps</h4>
               <p className="text-cyan-300">Increff (NextSCM Solutions Pvt. Ltd.) | Feb 2022 – May 2022</p>
               <p className="text-gray-300 mt-2">
                 Implemented test deployment pipeline in Jenkins, which reduced production deployment failures by around 90%.

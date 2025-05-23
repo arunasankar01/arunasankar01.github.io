@@ -59,8 +59,8 @@ const About = () => {
             <p className="text-gray-300 mb-6">
               I am a dedicated software and DevOps engineer with experience in building robust cloud infrastructure
               and scalable applications. Currently pursuing my Master of Science in Computer Science at Georgia Institute
-              of Technology with a perfect 4.0 GPA, I'm deepening my knowledge in Network Security, Advanced Database
-              Systems Implementation, and Machine Learning.
+              of Technology with a perfect 4.0 GPA, I'm specializing in Computing Systems and Machine Learning. I am also a 
+              Graduate Research Intern at Georgia Tech this summer.
             </p>
             
             {/* Education Section */}
@@ -85,7 +85,7 @@ const About = () => {
                   <span className="text-purple-300 text-sm">2018 - 2022</span>
                 </div>
                 <p className="text-gray-400 text-sm">Bachelor of Technology in Electronics and Communication Engineering</p>
-                <p className="text-gray-400 text-sm">GPA: 9.29/10 (Graduated First Class with Distinction; Gold Medallist)</p>
+                <p className="text-gray-400 text-sm">GPA: 9.29/10 </p>
                 <p className="text-gray-300 text-sm mt-1">
                   <span className="text-purple-300">Relevant Coursework:</span> Computer Systems Architecture, Computer Programming, DSA, OS, DBMS, Networks
                 </p>
