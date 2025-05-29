@@ -133,6 +133,15 @@ const Projects = () => {
       isGTProject: true
     },
     {
+      title: "Raft Consensus Algorithm Implementation",
+      description: "Implemented Raft for distributed replicated state machines, handling leader election, log replication and fault tolerance across peers. Developed remote procedure call interfaces, utilized gob encoders for data serialization and handled node failure and network partition scenarios",
+      tags: ["Go", "RPC"],
+      image: null, // Add your image path here
+      link: "https://project-demo.com",
+      github: "https://github.com/yourusername/project",
+      isGTProject: true
+    },
+    {
       title: "Multi-Version Concurrency Control Implementation in BuzzDB",
       description: "Implemented MVCC using Multi-Version Timestamp Ordering protocol with append-only version storage architecture. Designed version chains, timestamp-based transaction management to improve concurrency while maintaining consistency",
       tags: [" C++", "MVTO (Multi-version timestamp ordering)"],
@@ -148,7 +157,7 @@ const Projects = () => {
       image: null, // Add your image path here
       link: "https://weather-app-demo.com",
       github: "https://github.com/arunasankar01/auth-app",
-      isGTProject: false
+      isGTProject: true
     },
     {
       title: "Implementation for Internet Simulation",
