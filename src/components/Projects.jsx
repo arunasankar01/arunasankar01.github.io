@@ -124,9 +124,36 @@ const ProjectCard = ({ index, title, description, tags, image, link, github, isG
 const Projects = () => {
   const projects = [
     {
+      title: "Credit-based CPU Scheduler in GTThreads",
+      description: "Designed & developed a credit scheduler in GTthreads library with load balancing across multi-processors and voluntary pre-emption. Evaluated scheduler fairness, throughput and context-switch behavior across 128+ threads",
+      tags: ["C", "Multi-threading", "Load balancing", "CPU Scheduling"],
+      image: null, // Add your image path here
+      link: "https://project-demo.com",
+      github: "https://github.com/yourusername/project",
+      isGTProject: true
+    },
+    {
+      title: "TinyFile Compression Service (IPC over Shared Memory)",
+      description: "Developed a file compression service using System V shared memory and message queues enabling synchronous, asynchronous and QoS-based IPC between clients and a daemon",
+      tags: ["C", "System V IPC", "Shared Memory", "Multi-threading", "QoS"],
+      image: null, // Add your image path here
+      link: "https://project-demo.com",
+      github: "https://github.com/yourusername/project",
+      isGTProject: true
+    },
+    {
+      title: "LLM Inference Optimization with LayerSkip Enhancement",
+      description: "Enhanced LayerSkip with Draft & Verify and Layer Collapse pruning for faster LLM inference",
+      tags: ["Python", "PyTorch", "CUDA", "Llama 2", "LoRA"],
+      image: null, // Add your image path here
+      link: "https://project-demo.com",
+      github: "https://github.com/yourusername/project",
+      isGTProject: true
+    },
+    {
       title: "Supply Chain Simulator (Ongoing)",
-      description: "Designing and developing a game based learning simulator. Will update the progress soon!",
-      tags: ["React", "Firebase", "Node.js", "DASH", "Python", "Plotly"],
+      description: "Developed a supply chain simulation game with real-time demand generation, fleet and route optimization and performance analytics for supply chain management training",
+      tags: ["React","Typescript", "Firebase", "Node.js", "DASH", "Python", "Plotly"],
       image: null, // Add your image path here
       link: "https://movie-rec-demo.com",
       github: "https://github.com/yourusername/movie-app",

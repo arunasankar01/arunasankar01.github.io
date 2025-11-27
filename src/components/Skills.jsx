@@ -39,11 +39,15 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Programming/Scripting Languages",
-      skills: ["C++", "Python", "Go/Golang", "C#", "C", "Shell", "SQL", "JavaScript", "HTML", "CSS"]
+      skills: ["C", "C++", "Python", "Go/Golang", "C#", "Shell", "SQL", "JavaScript", "Typescript", "HTML"]
     },
     {
       title: "Frameworks & Tools",
-      skills: ["React", "Node.js", "Jenkins(CI/CD)", "Git", "Bitbucket", "Docker", "Kubernetes", "Ansible", "Terraform", "ElasticSearch ELK", "Confluence", "JIRA", "JFrog Artifactory", "Kafka"]
+      skills: ["React", "Node.js", "Jenkins(CI/CD)", "Git", "Docker", "Kubernetes", "Ansible", "Terraform", "ElasticSearch ELK", "Kafka", "CMake", "Make", "GDB", "perf", "PyTorch", "TensorFlow"]
+    },
+    {
+      title: "Systems & Parallel Computing",
+      skills: ["POSIX threads", "System V IPC", "shared memory", "CPU performance profiling (perf, gprof)", "gRPC","Raft", "consistency protocols", "failure recovery", "file systems", "CUDA programming model"]
     },
     {
       title: "Cloud Computing",
@@ -51,7 +55,7 @@ const Skills = () => {
     },
     {
       title: "Certifications",
-      skills: ["The Web Developer Bootcamp (Udemy)", "Google Cloud Developer - GCP Professional Certification (Udemy)", "CKA - Certified Kubernetes Administrator (Udemy)", "Operating Systems Specialization (Coursera)"]
+      skills: ["The Web Developer Bootcamp (Udemy)", "Google Cloud Developer - GCP Professional Certification (Udemy)", "CKA - Certified Kubernetes Administrator (Udemy)"]
     }
   ];
 
@@ -103,16 +107,16 @@ const Skills = () => {
           <div className="space-y-8">
             <div className="relative pl-6 border-l-2 border-purple-500">
               <div className="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1"></div>
-              <h4 className="text-xl font-semibold text-white">Graduate Research Intern</h4>
-              <p className="text-cyan-300">Georgia Institute of Technology | May 2025 – Present</p>
+              <h4 className="text-xl font-semibold text-white">Software Engineer Intern</h4>
+              <p className="text-cyan-300">Georgia Institute of Technology | May 2025 – Aug 2025</p>
               <p className="text-gray-300 mt-2">
-                Designing and developing a game based learning simulator to help students understand supply chain logistics configuration and physical internet concepts.
+                Developed a supply chain simulation game with real-time demand generation, fleet and route optimization and performance analytics
               </p>
             </div>
 
             <div className="relative pl-6 border-l-2 border-purple-500">
               <div className="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1"></div>
-              <h4 className="text-xl font-semibold text-white">Software Engineer I - DevOps</h4>
+              <h4 className="text-xl font-semibold text-white">Software Engineer I - Systems & Infrastructure</h4>
               <p className="text-cyan-300">Increff (NextSCM Solutions Pvt. Ltd.) | Jun 2022 – Jul 2024</p>
               <p className="text-gray-300 mt-2">
                 Enhanced security posture of cloud resources in GCP by 50%, compliant with ISO and CIS standards.
@@ -122,7 +126,7 @@ const Skills = () => {
             
             <div className="relative pl-6 border-l-2 border-purple-500">
               <div className="absolute w-4 h-4 bg-purple-500 rounded-full -left-[9px] top-1"></div>
-              <h4 className="text-xl font-semibold text-white">Software Engineer Intern - DevOps</h4>
+              <h4 className="text-xl font-semibold text-white">Software Engineer Intern - Infrastructure</h4>
               <p className="text-cyan-300">Increff (NextSCM Solutions Pvt. Ltd.) | Feb 2022 – May 2022</p>
               <p className="text-gray-300 mt-2">
                 Implemented test deployment pipeline in Jenkins, which reduced production deployment failures by around 90%.

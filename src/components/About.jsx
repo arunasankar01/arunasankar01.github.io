@@ -57,10 +57,10 @@ const About = () => {
             </h3>
             
             <p className="text-gray-300 mb-6">
-              I am a dedicated software and DevOps engineer with experience in building robust cloud infrastructure
+              I am a dedicated systems software engineer with experience in building robust cloud infrastructure
               and scalable applications. Currently pursuing my Master of Science in Computer Science at Georgia Institute
               of Technology with a perfect 4.0 GPA, I'm specializing in Computing Systems and Machine Learning. I am also a 
-              Graduate Research Intern at Georgia Tech this summer.
+              Graduate Research Assistant at Georgia Tech.
             </p>
             
             {/* Education Section */}
@@ -75,7 +75,7 @@ const About = () => {
                 <p className="text-gray-400 text-sm">Master of Science in Computer Science</p>
                 <p className="text-gray-400 text-sm">GPA: 4.0/4.0</p>
                 <p className="text-gray-300 text-sm mt-1">
-                  <span className="text-purple-300">Relevant Coursework:</span> Network Security, Advanced Database Systems Implementation, Machine Learning
+                  <span className="text-purple-300">Relevant Coursework:</span> Advanced OS, Advanced Database Systems Implementation, Advanced Networking, Machine and Deep Learning
                 </p>
               </div>
               
@@ -93,9 +93,9 @@ const About = () => {
             </div>
             
             <p className="text-gray-300 mb-6">
-              I have professional experience as a DevOps Engineer at Increff, where I enhanced security posture
-              of cloud resources in GCP by 50% and migrated legacy applications to containerized infrastructure,
-              reducing deployment time by 80%. My technical background also includes internships at Microsoft India
+              I have professional experience as a Systems and Infrastructure Engineer at Increff, where I enhanced security posture
+              of cloud resources in GCP by 50%, migrated legacy applications to containerized infrastructure,
+              reducing deployment time by 80% and built 15% automations for resource management and access control. My technical background also includes internships at Microsoft India
               where I developed features for Azure Virtual Machines.
             </p>
             

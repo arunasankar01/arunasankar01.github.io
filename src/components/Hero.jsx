@@ -59,9 +59,9 @@ const Hero = () => {
                 
                 <p className="text-gray-300 text-base sm:text-lg mb-6">
                   I'm a passionate software engineer with expertise in building robust and scalable 
-                  applications. I love solving complex problems with clean efficient code and 
+                  systems and applications. I love solving complex problems with clean efficient code and 
                   creating intuitive user experiences that make a difference.
-                  I'm currently looking for Software Engineering internships for Fall 2025. 
+                  I'm currently looking for Systems/Software Engineering full-time roles, starting May 2026. 
                 </p>
                 
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
